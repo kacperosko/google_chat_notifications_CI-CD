@@ -1,0 +1,2 @@
+argparse==1.4.0
+httplib2==0.22.0

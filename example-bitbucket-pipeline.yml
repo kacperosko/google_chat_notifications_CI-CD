@@ -1,0 +1,29 @@
+definitions:
+  scripts:
+    sendNotification: &sendNotification |
+      python3 sendNotification.py \
+        --exitcode $BITBUCKET_EXIT_CODE --buildnumber $BITBUCKET_BUILD_NUMBER --branch $BITBUCKET_BRANCH \
+        --isbefore n\
+
+    sendNotificationBefore: &sendNotificationBefore |
+      export BITBUCKET_TRIGGERER_USERNAME=$(curl -X GET -g "https://api.bitbucket.org/2.0/users/${BITBUCKET_STEP_TRIGGERER_UUID}" | jq --raw-output '.display_name')
+      
+      python3 sendNotification.py \
+        --exitcode $BITBUCKET_EXIT_CODE --buildnumber $BITBUCKET_BUILD_NUMBER --branch $BITBUCKET_BRANCH \
+        --isbefore y --user "$BITBUCKET_TRIGGERER_USERNAME" \
+
+    exampleDeploy: &exampleDeploy |
+      echo "Deploying Repository"
+
+  steps:
+    - step: &deployRepository
+        script:
+          - *sendNotificationBefore # Send notification that build is starting
+          - *exampleDeploy
+        after-script:
+          - *sendNotification # Send notification with build status
+
+pipelines:
+  custom:
+    deploy-repository:
+      - step: *deployRepository
