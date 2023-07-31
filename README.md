@@ -54,7 +54,7 @@ python3 sendNotifaction.py --exitcode 1 --isbefore n --buildnumber 1234 --branch
 ```commandline
 python3 sendNotifaction.py -h
               
->> usage: Vlocity Clean Versions [-h] -u USER -t TYPE -c COUNT
+>> usage: sendNotification.py [-h] [-e [EXITCODE]] [-f [ISBEFORE]] [-n [BUILDNUMBER]] [-b [BRANCH]] [-u [USER]]
 >>
 >> options:
    -h, --help                       show this help message and exit
