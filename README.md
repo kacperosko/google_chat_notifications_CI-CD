@@ -24,22 +24,22 @@ Download repository and install requirements
 ```commandline
 git clone https://github.com/kacperosko/google_chat_notifications_CI-CD.git
 cd google_chat_notifications_CI-CD
-pip install -r requirements.txt 
+pip install -r requirements.txt
 ```
 Create webhook in Google Chat following instruction:<br>
-[Create a webhook](https://developers.google.com/chat/how-tos/webhooks#create_a_webhook)
+<a href="https://developers.google.com/chat/how-tos/webhooks#create_a_webhook" target="_blank">Create a webhook</a>
 
 Then add **KEY** and **TOKEN** in python script inside dictionary **webhooks** with branch as dict key.
 ### Example configured webhooks in [settings.py](settings.py)
 ```python
 webhooks = {
-        "develop": {"GOOGLE_KEY": "AAAAAAaaaAAAAAAAA-AAAAAAaaaAAAAAAAA",
+        "develop": {"GOOGLE_KEY":   "AAAAAAaaaAAAAAAAA-AAAAAAaaaAAAAAAAA",
                     "GOOGLE_TOKEN": "V__AAAAAAaaaAAAAAAAAAAAAAAaaaAAAAAAAA",
                     "GOOGLE_SPACE": "AAAAAAAAAAaaaAAA"},
   
-        "production": {"GOOGLE_KEY": "AAAAAAaaaAAAAAAAA-AAAAAAaaaAAAAAAAA",
-                    "GOOGLE_TOKEN": "V__AAAAAAaaaAAAAAAAAAAAAAAaaaAAAAAAAA",
-                       "GOOGLE_SPACE": "AAAAAAAAAAaaaAAA"},
+        "production": {"GOOGLE_KEY":   "BBBbbbBbBbbbBBB-BBBbbbBbBbbbBBB",
+                       "GOOGLE_TOKEN": "V__BBBbbbBbBbbbBBBBBBbbbBbBbbbBBB",
+                       "GOOGLE_SPACE": "BBBbbbBbBbbbBBB"},
     }
 ```
 
@@ -52,7 +52,7 @@ python3 sendNotifaction.py --exitcode 1 --isbefore n --buildnumber 1234 --branch
 ## Usage
 
 ```commandline
-python sendNotifaction.py -h
+python3 sendNotifaction.py -h
               
 >> usage: Vlocity Clean Versions [-h] -u USER -t TYPE -c COUNT
 >>
